@@ -17,5 +17,8 @@
     <ProjectReference Include="..\InterviewTasks.Core\InterviewTasks.Core.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\InterviewTasks.DataAccess\InterviewTasks.DataAccess.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

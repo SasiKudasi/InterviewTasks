@@ -7,19 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Entities\" />
-    <None Remove="Configure\" />
-    <None Remove="Repository\" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Configure\" />
-    <Folder Include="Repository\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterviewTasks.Core\InterviewTasks.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <ProjectReference Include="..\InterviewTasks.DataAccess\InterviewTasks.DataAccess.csproj" />
   </ItemGroup>
 </Project>

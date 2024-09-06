@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTasks.Core", "Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTasks.DataAccess", "InterviewTasks.DataAccess\InterviewTasks.DataAccess.csproj", "{29161229-A3F8-4475-B267-6AE9AC03BDDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewTasks.Application", "InterviewTasks.Application\InterviewTasks.Application.csproj", "{5EE7F180-10F1-4704-9619-95B952FF0E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{29161229-A3F8-4475-B267-6AE9AC03BDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29161229-A3F8-4475-B267-6AE9AC03BDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29161229-A3F8-4475-B267-6AE9AC03BDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE7F180-10F1-4704-9619-95B952FF0E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE7F180-10F1-4704-9619-95B952FF0E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE7F180-10F1-4704-9619-95B952FF0E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE7F180-10F1-4704-9619-95B952FF0E81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

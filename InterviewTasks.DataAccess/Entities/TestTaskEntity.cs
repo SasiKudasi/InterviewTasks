@@ -8,7 +8,7 @@ namespace InterviewTasks.DataAccess.Entities
         public Guid Id { get; set; }
         public string Title { get; set; } = String.Empty;
         public string Description { get; set; } = String.Empty;
-        public DateTime DateAdded { get; }
+        public DateTime DateAdded { get; set; }
         public string FilePath { get; set; } = String.Empty;
         public DifficultyLevels DifficultyLevels { get; set; } = DifficultyLevels.Easy;
         public Guid CategoryId { get; set; }
