@@ -9,7 +9,7 @@ namespace InterviewTasks.DataAccess
 		public InterviewTasksDbContext(DbContextOptions<InterviewTasksDbContext> options) : base (options)
 		{
 		}
-		DbSet<TestTaskEntity> TestTasks { get; set; }
+        DbSet<TestTaskEntity> TestTasks { get; set; }
 		DbSet<TagEntity> Tags { get; set; }
 		DbSet<TagEntity> Categories { get; set; }
 	}

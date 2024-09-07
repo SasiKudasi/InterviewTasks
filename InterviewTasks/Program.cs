@@ -1,5 +1,7 @@
-﻿using InterviewTasks.Core.Abstractions;
+﻿using InterviewTasks.Application.Services;
+using InterviewTasks.Core.Abstractions;
 using InterviewTasks.Core.Factories;
+using InterviewTasks.Core.Models;
 using InterviewTasks.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddScoped<ICategoryFactory, CategoryFactory>();
 builder.Services.AddScoped<ITegFactory, TegFactory>();
 builder.Services.AddScoped<ITestTaskFactory, TestTaskFactory>();
 builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
+builder.Services.AddScoped<IService<TestTask>, TestTaskService>();
+builder.Services.AddScoped<IService<Category>, CategoryService>();
+builder.Services.AddScoped<IService<Tag>, TagService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

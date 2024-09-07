@@ -18,29 +18,61 @@ namespace InterviewTasks.Application.Services
             _testTaskFactory = testTaskFactory;
 		}
 
-        public Task<Tag> Create(Tag obj)
+        public async Task<Tag> Create(Tag obj)
         {
-            throw new NotImplementedException();
+            var tagEntity = new TagEntity
+            {
+                Id = obj.Id,
+                Name = obj.Name,
+                TestTaskId = obj.TestTaskId,
+                TestTask = null
+            };
+            await _repository.PostAsync(tagEntity);
+            return obj;
         }
 
-        public Task Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            await _repository.DeleteAsync(id);
         }
 
-        public Task<Tag> GetById(Guid id)
+        public async Task<Tag> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var tagEntity = await _repository.GetByIdAsync(id);
+            var tag = _factory.Create(
+                tagEntity.Id,
+                tagEntity.Name,
+                tagEntity.TestTaskId,
+                null);
+            return tag;
         }
 
-        public Task<ICollection<Tag>> GetList()
+        public async Task<ICollection<Tag>> GetList()
         {
-            throw new NotImplementedException();
+            var tagEntities = await _repository.GetListAsync();
+            var tagList = tagEntities.Select(t =>
+            {
+                var tag = _factory.Create(
+                    t.Id,
+                    t.Name,
+                    t.TestTaskId,
+                    null);
+                return tag;
+            }).ToList();
+            return tagList;
         }
 
-        public Task<Tag> Update(Tag obj)
+        public async Task<Tag> Update(Tag obj)
         {
-            throw new NotImplementedException();
+            var tagEntity = new TagEntity
+            {
+                Id = obj.Id,
+                Name = obj.Name,
+                TestTaskId = obj.TestTaskId,
+                TestTask = null
+            };
+            await _repository.PutAsync(tagEntity);
+            return obj;
         }
     }
 }

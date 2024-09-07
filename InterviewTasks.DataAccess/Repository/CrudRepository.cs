@@ -14,17 +14,33 @@ namespace InterviewTasks.DataAccess.Repository
 			_dbSet = context.Set<T>();
 		}
 
-		public async Task<T> GetByIdAsync (Guid id)
-		{
-			return await _dbSet.FindAsync(id);
-		}
+        public async Task<T> GetByIdAsync(Guid id, params string[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet;
 
-		public async Task<ICollection<T>> GetListAsync()
-		{
-			return await _dbSet.AsNoTracking().ToListAsync();
-		}
+            // Применяем Include для указанных навигационных свойств
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
 
-		public async Task<T> PostAsync(T obj)
+            return await query.AsNoTracking().FirstOrDefaultAsync(e => EF.Property<Guid>(e, "Id") == id);
+        }
+
+        public async Task<ICollection<T>> GetListAsync(params string[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet;
+
+            // Применяем Include для указанных навигационных свойств
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<T> PostAsync(T obj)
 		{
 			await _dbSet.AddAsync(obj);
 			await _context.SaveChangesAsync();
@@ -33,7 +49,9 @@ namespace InterviewTasks.DataAccess.Repository
 
 		public async Task<T> PutAsync(T obj)
 		{
-			_dbSet.Update(obj);
+            var entity = await _dbSet.FindAsync(obj);
+            if (entity!= null)
+                 _dbSet.Update(obj);
 			await _context.SaveChangesAsync();
 			return obj;
 		}

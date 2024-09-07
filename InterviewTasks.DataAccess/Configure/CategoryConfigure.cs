@@ -18,8 +18,6 @@ namespace InterviewTasks.DataAccess.Configure
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
-
-
         }
     }
 }
