@@ -16,8 +16,8 @@ namespace InterviewTasks.DataAccess.Configure
             builder.HasMany(x => x.TestTasks)
                 .WithOne(x => x.Category)
                 .HasForeignKey(x => x.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Cascade);
+                
         }
     }
 }

@@ -108,40 +108,10 @@ namespace InterviewTasks.Application.Services
         {
             var categoryEntity = new CategoryEntity
             {
-                Id = category.Id,
+                Id = new Guid(),
                 Name = category.Name,
                 TestTasks = new List<TestTaskEntity>()
             };
-
-            var tasksEntities = category.TestTasks.Select(t =>
-            {
-                var taskEntity = new TestTaskEntity
-                {
-                    Id = t.Id,
-                    Title = t.Title,
-                    Description = t.Description,
-                    DateAdded = t.DateAdded,
-                    FilePath = t.FilePath,
-                    DifficultyLevels = t.DifficultyLevels,
-                    CategoryId = t.CategoryId,
-                    Category = categoryEntity,
-                    Tags = new List<TagEntity>()
-                };
-
-                taskEntity.Tags = t.Tags.Select(tag =>
-                {
-                    return new TagEntity
-                    {
-                        Id = tag.Id,
-                        Name = tag.Name,
-                        TestTaskId = taskEntity.Id,
-                        TestTask = taskEntity
-                    };
-                }).ToList();
-                return taskEntity;
-            }).ToList();
-
-            categoryEntity.TestTasks = tasksEntities;
 
             await _repository.PostAsync(categoryEntity);
             return category;

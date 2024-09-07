@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using InterviewTasks.Contracts.TestTaskDTO;
 using InterviewTasks.Core.Abstractions;
+using InterviewTasks.Core.Enums;
 using InterviewTasks.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +13,11 @@ namespace InterviewTasks.Controllers
     public class TestTaskController : ControllerBase
     {
         private readonly IService<TestTask> _service;
-        public TestTaskController(IService<TestTask> service)
+        private readonly ITestTaskFactory _testTaskFactory;
+        public TestTaskController(IService<TestTask> service, ITestTaskFactory testTaskFactory)
         {
             _service = service;
+            _testTaskFactory = testTaskFactory;
         }
 
         [HttpGet]
@@ -30,10 +35,26 @@ namespace InterviewTasks.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<TestTask>> CreateTask(TestTask testTask)
+        public async Task<ActionResult<TestTask>> CreateTask(TestTaskRequest testTask)
         {
-            var task = await _service.Create(testTask);
-            return Ok(task);
+           //с тегами должно быть что то вроде
+           /*
+            получаем реквест со списком названий
+           после обращаемся куда нибудь и получаем все теги по названиям
+           после уже передаем в фактори тасок все данные
+            */
+
+            var task = _testTaskFactory.Create(
+                new Guid(),
+                testTask.Title,
+                testTask.Description,
+                testTask.DateAdded,
+                testTask.FilePath,
+                testTask.DifficultyLevels,
+                testTask.CategoryId,
+                null, // ссылкка на категорию не нужна в данном случае
+                null);// тут предварительно нужно будет как то получить все айди всех связанных тегов
+            return Ok(await _service.Create(task));
         }
 
         [HttpPut]

@@ -11,16 +11,16 @@ namespace InterviewTasks.Core.Models
 						DifficultyLevels difficultyLevels,
 						Guid categoryId, Category category, ICollection<Tag> tags )
 		{
-			Id = id;
-			Title = title;
+            Id = id;
+            Title = title;
 			Description = decription;
-			DateAdded = dateAdded;
-			FilePath = filePath;
-			DifficultyLevels = difficultyLevels;
-			CategoryId = categoryId;
-			Category = category;
-			Tags = tags;
-		}
+            DateAdded = dateAdded;
+            FilePath = filePath;
+            DifficultyLevels = difficultyLevels;
+            CategoryId = categoryId;
+            Category = category;
+            Tags = tags ?? new List<Tag>();
+        }
 		public Guid Id { get; }
 		public string Title { get; } = String.Empty;
 		public string Description { get; } = String.Empty;
@@ -28,8 +28,8 @@ namespace InterviewTasks.Core.Models
 		public string FilePath { get; } = String.Empty;
 		public DifficultyLevels DifficultyLevels { get; } = DifficultyLevels.Easy;
 		public Guid CategoryId { get; }
-		public Category Category { get; }
-        public ICollection<Tag> Tags { get; } = new List<Tag>();
+		public Category? Category { get; }
+        public ICollection<Tag>? Tags { get; } = new List<Tag>();
     }
 }
 

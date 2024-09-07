@@ -17,4 +17,3 @@ namespace InterviewTasks.Core.Models
 
     }
 }
-

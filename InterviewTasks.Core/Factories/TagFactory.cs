@@ -4,7 +4,7 @@ using InterviewTasks.Core.Models;
 
 namespace InterviewTasks.Core.Factories
 {
-	public class TegFactory : ITegFactory
+	public class TagFactory : ITagFactory
     {
 		
 

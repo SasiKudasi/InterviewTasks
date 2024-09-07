@@ -24,7 +24,8 @@ namespace InterviewTasks.DataAccess.Repository
                 query = query.Include(includeProperty);
             }
 
-            return await query.AsNoTracking().FirstOrDefaultAsync(e => EF.Property<Guid>(e, "Id") == id);
+            var entity = await query.FirstOrDefaultAsync(e => EF.Property<Guid>(e, "Id") == id);
+            return entity;
         }
 
         public async Task<ICollection<T>> GetListAsync(params string[] includeProperties)
@@ -37,7 +38,8 @@ namespace InterviewTasks.DataAccess.Repository
                 query = query.Include(includeProperty);
             }
 
-            return await query.AsNoTracking().ToListAsync();
+            var entity = await query.ToListAsync();
+            return entity;
         }
 
         public async Task<T> PostAsync(T obj)

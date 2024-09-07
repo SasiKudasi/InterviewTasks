@@ -8,24 +8,27 @@ namespace InterviewTasks.Application.Services
 	public class TagService : IService<Tag>
 	{
         private readonly ICrudRepository<TagEntity> _repository;
-        private readonly ITegFactory _factory;
+        private readonly ITagFactory _factory;
         private readonly ITestTaskFactory _testTaskFactory;
+        private readonly ICategoryFactory _categoryFactpry;
 
-        public TagService(ICrudRepository<TagEntity> repository, ITegFactory factory, ITestTaskFactory testTaskFactory)
+        public TagService(ICrudRepository<TagEntity> repository, ITagFactory factory,
+            ITestTaskFactory testTaskFactory, ICategoryFactory categoryFactory)
 		{
+
             _repository = repository;
             _factory = factory;
             _testTaskFactory = testTaskFactory;
+            _categoryFactpry = categoryFactory;
 		}
 
         public async Task<Tag> Create(Tag obj)
         {
             var tagEntity = new TagEntity
             {
-                Id = obj.Id,
+                Id = new Guid(),
                 Name = obj.Name,
                 TestTaskId = obj.TestTaskId,
-                TestTask = null
             };
             await _repository.PostAsync(tagEntity);
             return obj;
@@ -39,11 +42,23 @@ namespace InterviewTasks.Application.Services
         public async Task<Tag> GetById(Guid id)
         {
             var tagEntity = await _repository.GetByIdAsync(id);
+            var taskEntity = tagEntity.TestTask;
+            var task = _testTaskFactory.Create(
+                 taskEntity.Id,
+                taskEntity.Title,
+                taskEntity.Description,
+                taskEntity.DateAdded,
+                taskEntity.FilePath,
+                taskEntity.DifficultyLevels,
+                taskEntity.CategoryId,
+                null,
+                null);
+
             var tag = _factory.Create(
                 tagEntity.Id,
                 tagEntity.Name,
                 tagEntity.TestTaskId,
-                null);
+                task);
             return tag;
         }
 
