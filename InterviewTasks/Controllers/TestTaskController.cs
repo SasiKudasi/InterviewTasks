@@ -14,6 +14,17 @@ namespace InterviewTasks.Controllers
     [Route("api/[controller]")]
     public class TestTaskController : ControllerBase
     {
+        /*TODO
+         * Подумать на счет какой никакой валидации
+         * Добавить фильтры по дате и тегам
+         * Вообще стоит продумать какую то архитектуру (Сейчас все идет по наитию)
+         * В зависимости от архитектуры посмотреть на счет того что бы натянуть сюда фронт 
+         * или фронт будет натянут на какой то кор или где оно вообще будет???
+         * Покрыть сервис тестами :(
+         * Упаковать в контейнер
+         * Посмотреть как вообще настроить CI/CD
+         * Что то на счет деплоя
+         */
         private readonly IService<TestTask> _service;
         private readonly ITestTaskFactory _testTaskFactory;
         private readonly ITagFactory _tagFactory;
@@ -23,7 +34,7 @@ namespace InterviewTasks.Controllers
             _testTaskFactory = testTaskFactory;
             _tagFactory = tagFactory;
         }
-
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TestTaskResponce>>> GetTestTasks()
         {
