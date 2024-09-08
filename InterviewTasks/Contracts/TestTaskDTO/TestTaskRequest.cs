@@ -6,6 +6,7 @@ using InterviewTasks.Core.Models;
 namespace InterviewTasks.Contracts.TestTaskDTO
 {
 	public record TestTaskRequest(
+        Guid? Id,
 		string Title,
 		string Description,
 		DateTime DateAdded,

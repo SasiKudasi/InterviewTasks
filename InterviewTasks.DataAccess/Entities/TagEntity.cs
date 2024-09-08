@@ -7,8 +7,8 @@ namespace InterviewTasks.DataAccess.Entities
 	{
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid TestTaskId { get; set; }
-        public TestTaskEntity TestTask { get; set; }
+        public Guid? TestTaskId { get; set; }
+        public TestTaskEntity? TestTask { get; set; }
     }
 }
 

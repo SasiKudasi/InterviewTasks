@@ -13,7 +13,7 @@ namespace InterviewTasks.Core.Models
 		}
 		public Guid Id { get; }
 		public string Name { get; } = string.Empty;
-        public ICollection<TestTask> TestTasks { get; } = new List<TestTask>();
+        public ICollection<TestTask>? TestTasks { get; } = new List<TestTask>();
 
     }
 }

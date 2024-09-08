@@ -7,7 +7,7 @@ namespace InterviewTasks.Core.Factories
 {
     public class TestTaskFactory : ITestTaskFactory
     {
-        public TestTask Create(Guid id, string title, string decription,
+        public TestTask Create(Guid? id, string title, string decription,
             DateTime dateAdded,string filePath, DifficultyLevels difficultyLevels,
             Guid categoryId, Category category, ICollection<Tag> tags)
         {

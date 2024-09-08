@@ -33,14 +33,12 @@
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Contracts\" />
-    <None Remove="Contracts\CategoryDTO\" />
     <None Remove="Contracts\TestTaskDTO\" />
     <None Remove="Contracts\TagDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Contracts\" />
-    <Folder Include="Contracts\CategoryDTO\" />
     <Folder Include="Contracts\TestTaskDTO\" />
     <Folder Include="Contracts\TagDTO\" />
   </ItemGroup>

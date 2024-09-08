@@ -12,8 +12,8 @@ namespace InterviewTasks.DataAccess.Entities
         public string FilePath { get; set; } = String.Empty;
         public DifficultyLevels DifficultyLevels { get; set; } = DifficultyLevels.Easy;
         public Guid CategoryId { get; set; }
-        public CategoryEntity Category { get; set; }
-        public ICollection<TagEntity> Tags { get; set; } = new List<TagEntity>();
+        public CategoryEntity? Category { get; set; }
+        public ICollection<TagEntity>? Tags { get; set; } = new List<TagEntity>();
     }
 }
 

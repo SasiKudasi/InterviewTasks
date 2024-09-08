@@ -6,7 +6,7 @@ namespace InterviewTasks.Core.Models
 {
 	public class TestTask
 	{
-		public TestTask(Guid id, string title, string decription,
+		public TestTask(Guid? id, string title, string decription,
 						DateTime dateAdded, string filePath,
 						DifficultyLevels difficultyLevels,
 						Guid categoryId, Category category, ICollection<Tag> tags )
@@ -21,14 +21,14 @@ namespace InterviewTasks.Core.Models
             Category = category;
             Tags = tags ?? new List<Tag>();
         }
-		public Guid Id { get; }
-		public string Title { get; } = String.Empty;
-		public string Description { get; } = String.Empty;
-		public DateTime DateAdded { get; }
-		public string FilePath { get; } = String.Empty;
-		public DifficultyLevels DifficultyLevels { get; } = DifficultyLevels.Easy;
-		public Guid CategoryId { get; }
-		public Category? Category { get; }
+        public Guid? Id { get; }
+        public string Title { get; } = String.Empty;
+        public string Description { get; } = String.Empty;
+        public DateTime DateAdded { get; }
+        public string FilePath { get; } = String.Empty;
+        public DifficultyLevels DifficultyLevels { get; } = DifficultyLevels.Easy;
+        public Guid CategoryId { get; }
+        public Category? Category { get; }
         public ICollection<Tag>? Tags { get; } = new List<Tag>();
     }
 }

@@ -8,7 +8,7 @@ namespace InterviewTasks.Core.Factories
     {
 		
 
-        public Tag Create(Guid id, string name, Guid testTaskId, TestTask testTask)
+        public Tag Create(Guid id, string name, Guid? testTaskId, TestTask testTask)
         {
             return new Tag(id, name, testTaskId, testTask);
         }

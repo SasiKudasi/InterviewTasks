@@ -51,9 +51,7 @@ namespace InterviewTasks.DataAccess.Repository
 
 		public async Task<T> PutAsync(T obj)
 		{
-            var entity = await _dbSet.FindAsync(obj);
-            if (entity!= null)
-                 _dbSet.Update(obj);
+            _dbSet.Update(obj);
 			await _context.SaveChangesAsync();
 			return obj;
 		}

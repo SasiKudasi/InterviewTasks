@@ -132,7 +132,7 @@ namespace InterviewTasks.Application.Services
             {
                 var taskEntity = new TestTaskEntity
                 {
-                    Id = t.Id,
+                    Id = (Guid)t.Id,
                     Title = t.Title,
                     Description = t.Description,
                     DateAdded = t.DateAdded,

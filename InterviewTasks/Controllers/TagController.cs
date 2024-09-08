@@ -1,4 +1,5 @@
 ﻿using System;
+using InterviewTasks.Contracts.TagDTO;
 using InterviewTasks.Core.Abstractions;
 using InterviewTasks.Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,11 @@ namespace InterviewTasks.Controllers
     public class TagController : ControllerBase
 	{
 		private readonly IService<Tag> _service;
-		public TagController(IService<Tag> service)
+        private readonly ITagFactory _factory;
+		public TagController(IService<Tag> service, ITagFactory factory)
 		{
 			_service = service;
+            _factory = factory;
 		}
 
         [HttpGet]
@@ -24,28 +27,34 @@ namespace InterviewTasks.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tag>> GetTask(Guid id)
+        public async Task<ActionResult<Tag>> GetTag(Guid id)
         {
             var tag = await _service.GetById(id);
             return Ok(tag);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Tag>> CreateTask(Tag tag)
+        public async Task<ActionResult<Tag>> CreateTag(TagRequest tagRequest)
         {
+            var tag = _factory.Create(
+                tagRequest.Id,
+                tagRequest.Name,
+                tagRequest.TestTaskId,
+                null
+                );
             var newTag = await _service.Create(tag);
             return Ok(newTag);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Tag>> UpdateTask(Tag tag)
+        public async Task<ActionResult<Tag>> UpdateTag(Tag tag)
         {
             var updateTag = await _service.Update(tag);
             return Ok(updateTag);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteTask(Guid id)
+        public async Task<ActionResult> DeleteTag(Guid id)
         {
             await _service.Delete(id);
             return Ok();
